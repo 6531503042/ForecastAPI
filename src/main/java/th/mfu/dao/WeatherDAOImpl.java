@@ -11,8 +11,7 @@ import java.io.IOException;
 public class WeatherDAOImpl implements weatherDAO {
 
     // API Key for OpenWeatherMapAPI
-    private static final String Forecast_OPENWEATHER_API_KEY = "7029d414059ca595dbe015fc53517617";
-    private static final String Current_OPENWEATHER_API_KEY = "cb086c47ea6d9d1931080de3f9c086c0";
+    private static final String OPENWEATHER_API_KEY = "7029d414059ca595dbe015fc53517617";
     private static final String OPENWEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
     //PULL METHOD REPOSITORY METHOD
@@ -23,7 +22,7 @@ public class WeatherDAOImpl implements weatherDAO {
 
     @Override
     public String getHourlyWeatherData(String city, String country) throws IOException {
-        return connectAPICity(city, country);
+        return connectFiveDayForecast(city, country);
     }
 
     // Retreived Data JSON From OpenWeatherMap-API
@@ -39,40 +38,45 @@ public class WeatherDAOImpl implements weatherDAO {
         return getResponseBody;
     }
 
-    // Able to Retreived with OkHTTPClient method s
+    //Fetch CurrentWeather - Openweathermap API JSON as OkHttp Request client
     public String connectAPICity(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request;
 
+        //Condition if there're no city in the parem
         if (city.isEmpty()) {
+            //Show there're "City is empty"
             throw new IllegalArgumentException("City is empty");
         }
 
+        //User can input Country @Parem (Country is {Optional}
         if (country.isEmpty()) {
             request = new Request.Builder()
-                    .url("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + Current_OPENWEATHER_API_KEY)
+                    //Get url without Country?q=
+                    .url(OPENWEATHER_API_URL +"/weather?q=" + city + "&appid=" + OPENWEATHER_API_KEY)
                     .get()
                     .build();
         } else {
             request = new Request.Builder()
-                    .url("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&country=" + country + "&appid="
-                            + Current_OPENWEATHER_API_KEY)
+                    //Get url with all $City && $Country
+                    .url(OPENWEATHER_API_URL + "/weather?q=" + city + "&country=" + country + "&appid="
+                            + OPENWEATHER_API_KEY)
                     .get()
                     .build();
         }
         return getResponse(client, request);
     }
 
+
+    //Fetch Forecast - Openweathermap API JSON as OkHttp Request client
     private String connectFiveDayForecast(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
-        Request request;
+        Request request = new Request.Builder()
+                //There're no condition on this method user can add $City && $Country
+                .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "," + country + "&appid=" + OPENWEATHER_API_KEY)
+                .get()
+                .build();
 
-            request = new Request.Builder()
-                    .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "&country=" + country + "&appid="
-                            + Forecast_OPENWEATHER_API_KEY)
-                    .get()
-                    .build();
         return getFiveDayResponse(client, request);
     }
-
 }

@@ -132,6 +132,13 @@
 
 	</div>
 
-	<script src="/public/js/search-iso-codes.js"></script>
+	<script>
+		//Inline JS
+		function addISOCode(country){
+
+		let addISO = document.getElementById("country");
+
+		addISO.value = country;
+	}</script>
 </body>
 </html>

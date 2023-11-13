@@ -1,10 +1,8 @@
 th/mfu/service/weatherServiceImpl.class
 th/mfu/model/Forecast.class
-th/mfu/controller/ErrorPath.class
 th/mfu/controller/WeatherController.class
 th/mfu/WeatherApplication.class
 th/mfu/service/weatherService.class
-th/mfu/EnableSwagger2.class
 th/mfu/service/LUY.class
 th/mfu/dao/weatherDAO.class
 th/mfu/model/Weather.class
