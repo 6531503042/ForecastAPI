@@ -72,6 +72,7 @@
 			<td>Temperature (&#176;C)</td>
 			<td>Minimum temperature (&#176;C)</td>
 			<td>Maximum temperature (&#176;C)</td>
+			<td>Wind's Speed</td>
 			<td>Weather</td>
 			<td>Weather description</td>
 			<td>Pressure</td>
@@ -89,6 +90,7 @@
 				<td>${list.temperature}</td>
 				<td>${list.tempMin}</td>
 				<td>${list.tempMax}</td>
+				<td>${list.wind}</td>
 				<td>${list.weather}</td>
 				<td>${list.weatherDesc}</td>
 				<td>${list.pressure}</td>
@@ -107,6 +109,7 @@
 				<td>${list.temperature}</td>
 				<td>${list.tempMin}</td>
 				<td>${list.tempMax}</td>
+				<td>${list.wind}</td>
 				<td>${list.weather}</td>
 				<td>${list.weatherDesc}</td>
 				<td>${list.pressure}</td>
@@ -125,6 +128,7 @@
 				<td>${list.temperature}</td>
 				<td>${list.tempMin}</td>
 				<td>${list.tempMax}</td>
+				<td>${list.wind}</td>
 				<td>${list.weather}</td>
 				<td>${list.weatherDesc}</td>
 				<td>${list.pressure}</td>
@@ -143,6 +147,7 @@
 				<td>${list.temperature}</td>
 				<td>${list.tempMin}</td>
 				<td>${list.tempMax}</td>
+				<td>${list.wind}</td>
 				<td>${list.weather}</td>
 				<td>${list.weatherDesc}</td>
 				<td>${list.pressure}</td>
@@ -161,6 +166,7 @@
 				<td>${list.temperature}</td>
 				<td>${list.tempMin}</td>
 				<td>${list.tempMax}</td>
+				<td>${list.wind}</td>
 				<td>${list.weather}</td>
 				<td>${list.weatherDesc}</td>
 				<td>${list.pressure}</td>

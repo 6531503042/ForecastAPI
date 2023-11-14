@@ -20,6 +20,15 @@ public class Forecast {
     private double tempMax;
     private double pressure;
     private double humidity;
+
+    public double getFeels_likes() {
+        return feels_likes;
+    }
+
+    public void setFeels_likes(double feels_likes) {
+        this.feels_likes = feels_likes;
+    }
+
     private double wind;
     private double feels_likes;
 

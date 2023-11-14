@@ -2,7 +2,7 @@ package th.mfu.dao;
 
 import java.io.IOException;
 
-public interface weatherDAO {
+public interface WeatherDAO {
 
 
     //Repository for Weather DAO for Accessing through API Json

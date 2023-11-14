@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.io.IOException;
 
 @Repository
-public class WeatherDAOImpl implements weatherDAO {
+public class WeatherDAOImpl implements WeatherDAO {
 
     // API Key for OpenWeatherMapAPI
     private static final String OPENWEATHER_API_KEY = "7029d414059ca595dbe015fc53517617";
@@ -32,7 +32,7 @@ public class WeatherDAOImpl implements weatherDAO {
         return getResponseBody;
     }
 
-    public String getResponse(OkHttpClient client, Request request) throws  IOException {
+    public String getWeatherResponse(OkHttpClient client, Request request) throws  IOException {
         Response response = client.newCall(request).execute();
         String getResponseBody = response.body().string();
         return getResponseBody;
@@ -64,7 +64,7 @@ public class WeatherDAOImpl implements weatherDAO {
                     .get()
                     .build();
         }
-        return getResponse(client, request);
+        return getWeatherResponse(client, request);
     }
 
 

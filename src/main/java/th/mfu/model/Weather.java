@@ -22,6 +22,15 @@ public class Weather {
     private double tempMax;
     private double pressure;
     private double humidity;
+    private double wind;
+
+    public double getWind() {
+        return wind;
+    }
+
+    public void setWind(double wind) {
+        this.wind = wind;
+    }
 
     public Weather() {
         this.df = new DecimalFormat("#.00");

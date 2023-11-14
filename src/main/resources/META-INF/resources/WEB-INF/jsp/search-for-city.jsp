@@ -1,132 +1,272 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>${weather.city}'s Current Weather</title>
+<style>
+	@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,700,900,300);
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" 
-integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
-crossorigin="anonymous">
+	body {
+		width: 100%;
+		height: 100%;
+		background-color: #263238;
+		margin: 0;
+		padding: 0;
+		font-family: 'Roboto', Helvetica, Arial, sans-serif;
+		color: #fff;
+	}
 
-</head>
-<body>
+	.widget-container {
+		width: 1000px;
+		height: 800px;
+		display: block;
+		background-color: #313e45;
+		border-radius: 25px;
+		margin: 0 auto;
+		overflow: hidden; /* Prevents child elements from overflowing */
+	}
 
-	<header style = "background-color: #15ffaa; text-align: center;">
-		<strong style = "font-size: 30px;">${weather.city}'s current weather</strong><br/>
-		<a href = "/" class = "btn btn-link">Return to weather search</a>
-	</header>
+	.top-left,
+	.top-right,
+	.bottom-left,
+	.bottom-right {
+		box-sizing: border-box; /* Include padding and border in element's total width and height */
+	}
 
-	<div class = "card-body">
-		
-		<table class = "table table-sm table-striped">
-			
-			<tbody>
-			
-				<tr style = "background-color: #000000; color: #ffffff;">
-					<td>
-						Country 
-					</td>
-					<td>
-						Country (ISO code)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-alarm" viewBox="0 0 16 16">
-							<path d="M8.5 5.5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5z"/>
-							<path d="M6.5 0a.5.5 0 0 0 0 1H7v1.07a7.001 7.001 0 0 0-3.273 12.474l-.602.602a.5.5 0 0 0 .707.708l.746-.746A6.97 6.97 0 0 0 8 16a6.97 6.97 0 0 0 3.422-.892l.746.746a.5.5 0 0 0 .707-.708l-.601-.602A7.001 7.001 0 0 0 9 2.07V1h.5a.5.5 0 0 0 0-1h-3zm1.038 3.018a6.093 6.093 0 0 1 .924 0 6 6 0 1 1-.924 0zM0 3.5c0 .753.333 1.429.86 1.887A8.035 8.035 0 0 1 4.387 1.86 2.5 2.5 0 0 0 0 3.5zM13.5 1c-.753 0-1.429.333-1.887.86a8.035 8.035 0 0 1 3.527 3.527A2.5 2.5 0 0 0 13.5 1z"/>
-						</svg>
-						Time zone (Hours)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer" viewBox="0 0 16 16">
-							<path d="M8 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-							<path d="M8 0a2.5 2.5 0 0 0-2.5 2.5v7.55a3.5 3.5 0 1 0 5 0V2.5A2.5 2.5 0 0 0 8 0zM6.5 2.5a1.5 1.5 0 1 1 3 0v7.987l.167.15a2.5 2.5 0 1 1-3.333 0l.166-.15V2.5z"/>
-						</svg>
-						Temperature (&#176;C)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer" viewBox="0 0 16 16">
-							<path d="M8 14a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
-							<path d="M8 0a2.5 2.5 0 0 0-2.5 2.5v7.55a3.5 3.5 0 1 0 5 0V2.5A2.5 2.5 0 0 0 8 0zM6.5 2.5a1.5 1.5 0 1 1 3 0v7.987l.167.15a2.5 2.5 0 1 1-3.333 0l.166-.15V2.5z"/>
-						</svg>
-						Feels like (&#176;C)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-low" viewBox="0 0 16 16">
-							<path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V9.5a.5.5 0 0 1 1 0v1.585a1.5 1.5 0 0 1 1 1.415z"/>
-							<path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
-						</svg>
-						Minimum temperature (&#176;C)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-thermometer-high" viewBox="0 0 16 16">
-							<path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V2.5a.5.5 0 0 1 1 0v8.585a1.5 1.5 0 0 1 1 1.415z"/>
-							<path d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z"/>
-						</svg>
-						Maximum temperature (&#176;C)
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cloud" viewBox="0 0 16 16">
-							<path d="M4.406 3.342A5.53 5.53 0 0 1 8 2c2.69 0 4.923 2 5.166 4.579C14.758 6.804 16 8.137 16 9.773 16 11.569 14.502 13 12.687 13H3.781C1.708 13 0 11.366 0 9.318c0-1.763 1.266-3.223 2.942-3.593.143-.863.698-1.723 1.464-2.383zm.653.757c-.757.653-1.153 1.44-1.153 2.056v.448l-.445.049C2.064 6.805 1 7.952 1 9.318 1 10.785 2.23 12 3.781 12h8.906C13.98 12 15 10.988 15 9.773c0-1.216-1.02-2.228-2.313-2.228h-.5v-.5C12.188 4.825 10.328 3 8 3a4.53 4.53 0 0 0-2.941 1.1z"/>
-						</svg>
-						Weather
-					</td>
-					<td>
-						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-blockquote-left" viewBox="0 0 16 16">
-							<path d="M2.5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm5 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm0 3a.5.5 0 0 0 0 1h6a.5.5 0 0 0 0-1h-6zm-5 3a.5.5 0 0 0 0 1h11a.5.5 0 0 0 0-1h-11zm.79-5.373c.112-.078.26-.17.444-.275L3.524 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282c.024-.203.065-.37.123-.498a1.38 1.38 0 0 1 .252-.37 1.94 1.94 0 0 1 .346-.298zm2.167 0c.113-.078.262-.17.445-.275L5.692 6c-.122.074-.272.17-.452.287-.18.117-.35.26-.51.428a2.425 2.425 0 0 0-.398.562c-.11.207-.164.438-.164.692 0 .36.072.65.217.873.144.219.385.328.72.328.215 0 .383-.07.504-.211a.697.697 0 0 0 .188-.463c0-.23-.07-.404-.211-.521-.137-.121-.326-.182-.568-.182h-.282a1.75 1.75 0 0 1 .118-.492c.058-.13.144-.254.257-.375a1.94 1.94 0 0 1 .346-.3z"/>
-						</svg>
-						Weather description
-					</td>
-					<td>
-						Pressure
-					</td>
-					<td>
-						Humidity
-					</td>
-				</tr>
-			
-				<tr>
-					<td>
-						${weather.country}
-					</td>
-					<td>
-						${weather.countryISOCode}
-					</td>
-					<td>
-						${weather.timeZone}
-					</td>
-					<td>
-						${weather.temperature}
-					</td>
-					<td>
-						${weather.tempFeelsLike}
-					</td>
-					<td>
-						${weather.tempMin}
-					</td>
-					<td>
-						${weather.tempMax}
-					</td>
-					<td>
-						${weather.weather}
-					</td>
-					<td>
-						${weather.weatherDesc}
-					</td>
-					<td>
-						${weather.pressure}
-					</td>
-					<td>
-						${weather.humidity}
-					</td>
-				</tr>
-				
-			</tbody>
-		
-		</table>
-	
+	.top-left {
+		height: 60%;
+		width: 50%;
+		padding: 55px 0 0 70px;
+		display: inline-block;
+		box-sizing: border-box;
+	}
+
+	.top-right {
+		height: 60%;
+		width: 50%;
+		float: right;
+		padding: 55px 0 0 0;
+		box-sizing: border-box;
+	}
+
+	.bottom-left {
+		height: 40%;
+		width: 45%;
+		float: left;
+		margin: 0;
+		padding: 40px 0 0 50px;
+		box-sizing: border-box;
+	}
+
+	.bottom-right {
+		height: 80%;
+		width: 55%;
+		float: right;
+		padding: 25px 0 0 60px;
+		box-sizing: border-box;
+	}
+
+	h1, h2, h3, p {
+		margin: 0;
+		padding: 0;
+	}
+/* Top-left Div CSS */
+
+#city {
+	font-weight: 900;
+	font-size: 25px;
+}
+
+#day {
+	font-weight: 700;
+	font-size: 25px;
+	margin-top: 18px;
+}
+
+#date {
+	font-weight: 500;
+	font-size: 20px;
+	margin-top: 4px;
+}
+
+#time {
+	font-weight: 400;
+	font-size: 18px;
+	margin-top: 8px;
+}
+
+#codepen-link {
+	font-weight: 400;
+	font-size: 12px;
+	margin-top: 20px;
+}
+
+.top-left > a {
+	text-decoration: none;
+	color: white;
+}
+
+.top-left > a:hover {
+	color: #b0bec5;
+}
+
+
+/* Top-Right Div CSS */
+
+#weather-status {
+	font-size: 18px;
+	font-weight: 300;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.top-right > img {
+	width: 120px;
+	height: 120px;
+	display: block;
+	margin: 15px auto 0 auto;
+}
+
+
+/* Horizontal-Half-divider */
+
+.horizontal-half-divider {
+	width: 100%;
+	height: 3px;
+	margin-top: -5px;
+	background-color: #263238;
+}
+
+.vertical-half-divider {
+	width: 3px;
+	position: absolute;
+	height: 167px;
+	background-color: #263238;
+	float: right;
+	display: inline-block;
+	padding: 0;
+}
+
+
+/* Bottom-left CSS */
+
+#temperature,
+#celsius,
+#temp-divider,
+#fahrenheit {
+	display: inline;
+	vertical-align: middle;
+}
+
+#temperature {
+	font-size: 60px;
+	font-weight: 800;
+	margin-right: 5px;
+}
+
+#celsius {
+	margin-right: 10px;
+}
+
+#fahrenheit {
+	margin-right: 5px;
+	color: #b0bec5;
+}
+
+#celsius,
+#temp-divider,
+#fahrenheit {
+	font-size: 30px;
+	font-weight: 800;
+}
+
+#celsius:hover,
+#fahrenheit:hover {
+	cursor: pointer;
+}
+
+
+
+
+/* Bottom-Right CSS */
+
+.other-details-key {
+	float: left;
+	font-size: 16px;
+	font-weight: 300;
+}
+
+.other-details-values {
+	float: left;
+	font-size: 16px;
+	font-weight: 400;
+	margin-left: 40px;
+}
+
+.watermark-link {
+	text-decoration:none;
+	color:#b0bec5;
+}
+
+.watermark-link:hover {
+	color:white;
+	text-decoration:none;
+}
+
+.watermark {
+	margin-top:10px;
+	text-align:center;
+	font-weight:400;
+}</style>
+<div class="wrapper">
+	<div class="widget-container">
+		<div class="top-left">
+			<h1 class="city" id="city">Weather Widget App</h1>
+
+			<h2 id="day">Day</h2>
+			<h3 id="date">Month, Day Year</h3>
+			<h3 id="time">Time</h3>
+			<p class="geo"></p>
+		</div>
+		<div class="top-right">
+			<h1 id="weather-status">Weather / Weather Status</h1>
+			<img class="weather-icon" src="https://myleschuahiock.files.wordpress.com/2016/02/sunny2.png">
+		</div>
+		<div class="horizontal-half-divider"></div>
+		<div class="bottom-left">
+			<h1 id="temperature">${weather.temperature}</h1>
+				<h2 id="celsius">&deg;C</h2>
+		</div>
+		<div class="vertical-half-divider"></div>
+		<div class="bottom-right">
+			<div class="other-details-key">
+				<p>Country</p>
+				<p>Country (ISO code)</p>
+				<p>Time zone (Hours)</p>
+				<p>Temperature (&#176;C)</p>
+				<p>Feels like (&#176;C)</p>
+				<p>Minimum temperature (&#176;C)</p>
+				<p>Maximum temperature (&#176;C)</p>
+				<p>weather</p>
+				<p>Weather description</p>
+				<p>Wind Speed</p>
+				<p>Humidity</p>
+				<p>Pressure</p>
+			</div>
+			<div class="other-details-values">
+				<p>${weather.country}</p>
+				<p>${weather.countryISOCode}</p>
+				<p>${weather.timeZone}</p>
+				<p>${weather.temperature}</p>
+				<p>${weather.tempFeelsLike}</p>
+				<p>${weather.tempMin}</p>
+				<p>${weather.tempMax}</p>
+				<p>${weather.weather}</p>
+				<p>${weather.weatherDesc}</p>
+				<p class="windspeed">${weather.wind}</p>
+				<p class="pressure">${weather.pressure}</p>
+				<p class="humidity">${weather.humidity}</p>
+			</div>
+		</div>
 	</div>
+</div>
 
 </body>
 </html>

@@ -139,6 +139,7 @@
 		let addISO = document.getElementById("country");
 
 		addISO.value = country;
-	}</script>
+	}
+	</script>
 </body>
 </html>
