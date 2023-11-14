@@ -220,9 +220,15 @@
 		<div class="top-left">
 			<h1 class="city" id="city">Weather Widget App</h1>
 
-			<h2 id="day">Day</h2>
-			<h3 id="date">Month, Day Year</h3>
-			<h3 id="time">Time</h3>
+			<h2 id="day">Day:
+				<p id="currentDay"></p>
+			</h2>
+			<h3 id="date">Date:
+				<p id="currentDate"></p>
+			</h3>
+			<h3 id="time">Time:
+				<p id="currentTime"></p>
+			</h3>
 			<p class="geo"></p>
 		</div>
 		<div class="top-right">
@@ -269,4 +275,70 @@
 </div>
 
 </body>
+<script>
+	// Function to update the current time
+	function updateCurrentTime() {
+		var currentTimeElement = document.getElementById('currentTime');
+		var currentTime = new Date();
+		var hours = currentTime.getHours();
+		var minutes = currentTime.getMinutes();
+		var seconds = currentTime.getSeconds();
+
+		// Add leading zero if needed
+		hours = (hours < 10 ? "0" : "") + hours;
+		minutes = (minutes < 10 ? "0" : "") + minutes;
+		seconds = (seconds < 10 ? "0" : "") + seconds;
+
+		// Format the time as HH:MM:SS
+		var formattedTime = hours + ":" + minutes + ":" + seconds;
+
+		// Set the content of the element
+		currentTimeElement.innerHTML = formattedTime;
+	}
+
+	// Call the function initially
+	updateCurrentTime();
+
+	// Update the current time every second
+	setInterval(updateCurrentTime, 1000);
+
+	function updateCurrentDate() {
+		var currentDateElement = document.getElementById('currentDate');
+		var currentDate = new Date();
+		var date = currentDate.getDate();
+		var month = currentDate.getMonth() + 1; // Months are 0-based
+		var year = currentDate.getFullYear();
+
+		// Add leading zero if needed
+		date = (date < 10 ? "0" : "") + date;
+		month = (month < 10 ? "0" : "") + month;
+
+		// Format the date
+		var formattedDate = date + '/' + month + '/' + year;
+
+		// Set the content of the element
+		currentDateElement.innerHTML = formattedDate;
+	}
+
+	// Call the function initially
+	updateCurrentDate();
+
+	// Update the current date every second
+	setInterval(updateCurrentDate, 1000);
+
+	function updateCurrentDay() {
+		var currentDayElement = document.getElementById('currentDay');
+		var currentDate = new Date();
+		var day = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+
+		// Set the content of the element
+		currentDayElement.innerHTML = day;
+	}
+
+	// Call the function initially
+	updateCurrentDay();
+
+	// Update the current day every second (optional)
+	// setInterval(updateCurrentDay, 1000);
+</script>
 </html>

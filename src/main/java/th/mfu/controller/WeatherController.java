@@ -45,13 +45,9 @@ public class WeatherController implements ErrorController {
 
     @RequestMapping(value = ERROR_PATH)
     public String errorPage(Model model) {
-
         CountryCodes codes = new CountryCodes();
-
         model.addAttribute("codes", codes.getAllCountryCodes());
-
         return "weather-view";
-
     }
 
     @RequestMapping("/")
