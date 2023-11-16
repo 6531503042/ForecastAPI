@@ -9,4 +9,6 @@ public interface WeatherDAO {
     public String getWeatherDataCity(String city, String country) throws IOException;
 
     public String getHourlyWeatherData(String city, String country) throws IOException;
+
+//    public String getAirPollutionData(String lat, String lon) throws IOException;
 }

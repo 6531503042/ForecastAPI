@@ -24,6 +24,35 @@ public class Weather {
     private double humidity;
     private double wind;
 
+    public int getDeg() {
+        return deg;
+    }
+
+    public void setDeg(int deg) {
+        this.deg = deg;
+    }
+
+    private int deg;
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    private String lon;
+    private String lat;
+
     public double getWind() {
         return wind;
     }

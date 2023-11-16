@@ -21,23 +21,39 @@ public class WeatherServiceImpl implements WeatherService {
     private String json;
     private Weather weather;
     private Map<String, List<Forecast>> weatherForFiveDays;
+//    private Airpollution air;
 
+    //Retrieves current weather data in JSON Format and assigns it tp String var
     @Override
     public Weather getWeatherDataCity(String city, String country) throws IOException {
-
         return jsonParseCityWeather(city, country);
-
     }
+
+//    @Override
+//    public Airpollution getAirPollutionLatLon(String lat, String lon) throws IOException {
+//        return jsonParseAirPollution(lat, lon);
+//    }
 
     //Retrieves weather data in JSON format and assigns it to a String variable.
-    private Weather jsonParseCityWeather(String city, String country) throws IOException {
-
+    @Override
+    public Weather jsonParseCityWeather(String city, String country) throws IOException {
         this.json = this.wDAO.getWeatherDataCity(city, country);
         setWeatherParameters();
-
         return this.weather;
-
     }
+
+//    @Override
+//    public Airpollution jsonParseAirPollution(String lat, String lon) throws IOException {
+//        return jsonParseLatLonAirPollution(lat,lon);
+//    }
+//
+//    public Airpollution jsonParseLatLonAirPollution(String lat, String lon) throws IOException {
+//        this.json = this.wDAO.getAirPollutionData(lat, lon);
+//        setAirPollutionParameters();
+//        return this.air;
+//    }
+
+
 
     //Parses the JSONObject and retrieves the weather data.
     private void setWeatherParameters() {
@@ -47,6 +63,8 @@ public class WeatherServiceImpl implements WeatherService {
             JSONObject obj = new JSONObject(this.json);
 
             String name = obj.getString("name").toString();
+//            String lon = obj.getJSONObject("coord").getString("lon");
+//            String lat = obj.getJSONObject("coord").getString("lat");
             String country = obj.getJSONObject("sys").getString("country");
             double humidity = obj.getJSONObject("main").getInt("humidity");
             double pressure = obj.getJSONObject("main").getInt("pressure");
@@ -55,6 +73,7 @@ public class WeatherServiceImpl implements WeatherService {
             double tempMax = obj.getJSONObject("main").getDouble("temp_max");
             double tempMin = obj.getJSONObject("main").getDouble("temp_min");
             double wind = obj.getJSONObject("wind").getDouble("speed");
+            int deg = obj.getJSONObject("wind").getInt("deg");
             double timeZone = obj.getDouble("timezone");
             String weather = obj.getJSONArray("weather").getJSONObject(0).getString("main");
             String weatherDesc = obj.getJSONArray("weather").getJSONObject(0).getString("description");
@@ -64,6 +83,8 @@ public class WeatherServiceImpl implements WeatherService {
 
             //Setting the Weather object
             this.weather.setCity(name);
+//            this.weather.setLon(lon);
+//            this.weather.setLat(lat);
             this.weather.setCountry(new CountryCodes().getCountry(country));
             this.weather.setCountryISOCode(country);
             this.weather.setHumidity(humidity);
@@ -73,6 +94,7 @@ public class WeatherServiceImpl implements WeatherService {
             this.weather.setTempMax(tempMax);
             this.weather.setTempMin(tempMin);
             this.weather.setWind(wind);
+            this.weather.setDeg(deg);
             this.weather.setTimeZone(timeZone);
             this.weather.setWeather(weather);
             this.weather.setWeatherDesc(weatherDesc);
@@ -99,6 +121,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     }
 
+    //Foreacst For 3 Hours as JSONObject
     private void setHourlyWeatherParameters() {
 
         try {
@@ -124,6 +147,7 @@ public class WeatherServiceImpl implements WeatherService {
                 double tempMax = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_max");
                 double tempMin = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_min");
                 double wind = obj.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getDouble("speed");
+                int deg = obj.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getInt("deg");
                 String weather = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
                 String weatherDesc = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
 
@@ -138,6 +162,7 @@ public class WeatherServiceImpl implements WeatherService {
                 hourlyWeather.setTempMax(tempMax);
                 hourlyWeather.setTempMin(tempMin);
                 hourlyWeather.setWind(wind);
+                hourlyWeather.setDeg(deg);
                 hourlyWeather.setWeather(weather);
                 hourlyWeather.setWeatherDesc(weatherDesc);
 
@@ -158,6 +183,56 @@ public class WeatherServiceImpl implements WeatherService {
         }
 
     }
+//
+//    private void setAirPollutionParameters(){
+//        try {
+//            //Parsing the JSON Object and retrives the air pollution data
+//            Airpollution airpollution;
+//            JSONObject obj = new JSONObject(this.json);
+//
+//            int count = 0;
+//
+//            //Iterate each list that contain insider object
+//            for (int i =0;i < obj.getJSONArray("list").length(); i++) {
+//
+////                //Get Location Coordinate User's preferences location
+////                String lon = getJSONObject("coord").getString("lon");
+////                String lat = getJSONObject("coord").getString("lat");
+//
+//                //Get AQI Quality of air as User's's preferences location
+//                int aqi = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("aqi");
+//
+//                //Get Component as Co , pm2.5 , pm10
+//                double co = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("co");
+//                double no = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("no");
+//                double no2 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("co2");
+//                double o3 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("o3");
+//                double so2 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("so2");
+//                double pm2_5 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("pm2_5");
+//                double pm10 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("pm10");
+//                double nh3 = obj.getJSONArray("list").getJSONObject(i).getJSONObject("components").getDouble("nh3");
+//
+//
+//                //Creating the Air Pollution Object
+//                this.air = new Airpollution();
+//
+//                //Setting Air Pollution Object
+//                this.air.setLon(lon);
+//                this.air.setLat(lat);
+//                this.air.setAqi(aqi);
+//                this.air.setCo(co);
+//                this.air.setNo(no);
+//                this.air.setNo2(no2);
+//                this.air.setO3(o3);
+//                this.air.setSo2(so2);
+//                this.air.setPm2_5(pm2_5);
+//                this.air.setPm10(pm10);
+//                this.air.getNh3(nh3);
+//            }
+//        } catch(Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private String getCity(JSONObject obj) {
         String name = obj.getJSONObject("city").getString("name");

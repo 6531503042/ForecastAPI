@@ -21,6 +21,18 @@ public class Forecast {
     private double pressure;
     private double humidity;
 
+    public int getDeg() {
+        return deg;
+    }
+
+    public void setDeg(int deg) {
+        this.deg = deg;
+    }
+
+    private int deg;
+
+
+
     public double getFeels_likes() {
         return feels_likes;
     }

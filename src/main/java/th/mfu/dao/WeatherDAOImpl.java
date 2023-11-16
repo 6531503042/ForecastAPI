@@ -15,30 +15,51 @@ public class WeatherDAOImpl implements WeatherDAO {
     private static final String OPENWEATHER_API_URL = "https://api.openweathermap.org/data/2.5";
 
     //PULL METHOD REPOSITORY METHOD
+
+    //Current Weather Data API
     @Override
     public String getWeatherDataCity(String city, String country) throws IOException {
         return connectAPICity(city, country);
     }
 
+    //Forecast Data API
     @Override
     public String getHourlyWeatherData(String city, String country) throws IOException {
         return connectFiveDayForecast(city, country);
     }
 
+//    //Air pollution Data API
+//    @Override
+//    public String getAirPollutionData(String lat, String lon) throws IOException {
+//        return connectAirPollution(lat,lon);
+//    }
+
     // Retreived Data JSON From OpenWeatherMap-API
+
+    //Forecast Five-Days
     public String getFiveDayResponse(OkHttpClient client, Request request) throws IOException {
         Response response = client.newCall(request).execute();
         String getResponseBody = response.body().string();
         return getResponseBody;
     }
 
+    //Current Weather
     public String getWeatherResponse(OkHttpClient client, Request request) throws  IOException {
         Response response = client.newCall(request).execute();
         String getResponseBody = response.body().string();
         return getResponseBody;
     }
 
+//    //Air Pollution
+//    public String getAirPollutionResponse(OkHttpClient client, Request request) throws IOException {
+//        Response response = client.newCall(request).execute();
+//        String getResponseBody = response.body().string();
+//        return getResponseBody;
+//    }
+
     //Fetch CurrentWeather - Openweathermap API JSON as OkHttp Request client
+
+    //Current Connect API
     public String connectAPICity(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request;
@@ -69,6 +90,8 @@ public class WeatherDAOImpl implements WeatherDAO {
 
 
     //Fetch Forecast - Openweathermap API JSON as OkHttp Request client
+
+    //Forecast Connect API
     private String connectFiveDayForecast(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
@@ -79,4 +102,27 @@ public class WeatherDAOImpl implements WeatherDAO {
 
         return getFiveDayResponse(client, request);
     }
+
+    //Air Pollution Connect API
+
+//    private String connectAirPollution(String lat, String lon) throws IOException {
+//        OkHttpClient client = new OkHttpClient();
+//        Request request = new Request.Builder()
+//                .url(OPENWEATHER_API_URL + "/air_pollution?q=" + lat + "," + lon + "&appid=" + OPENWEATHER_API_KEY)
+//                .get()
+//                .build();
+//        return getAirPollutionResponse(client, request);
+//    }
+//
+//    public void SetLatLonUser(){
+//        Weather weather = new Weather();
+//
+//        try {
+//            String airPollutionData = connectAirPollution(weather.getLat(), weather.getLon());
+//            // Do something with the air pollution data
+//        } catch (IOException e) {
+//            // Handle IOException
+//            e.printStackTrace();
+//        }
+//    }
 }
