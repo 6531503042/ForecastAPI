@@ -9,7 +9,6 @@ public class Weather {
     private static final Integer CONVERT_SECONDS_TO_HOURS = 3600;
 
     private DecimalFormat df;
-
     private String city;
     private String country;
     private String countryISOCode;
@@ -23,6 +22,50 @@ public class Weather {
     private double pressure;
     private double humidity;
     private double wind;
+    private String weatherIcon;
+    private int deg;
+    private String sunriseTime;
+    private String sunsetTime;
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    private Double lat;
+    private Double lon;
+
+    public String getSunriseTime() {
+        return sunriseTime;
+    }
+
+    public void setSunriseTime(String sunriseTime) {
+        this.sunriseTime = sunriseTime;
+    }
+
+    public String getSunsetTime() {
+        return sunsetTime;
+    }
+
+    public void setSunsetTime(String sunsetTime) {
+        this.sunsetTime = sunsetTime;
+    }
+
+
+    public void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
+    }
 
     public int getDeg() {
         return deg;
@@ -31,27 +74,6 @@ public class Weather {
     public void setDeg(int deg) {
         this.deg = deg;
     }
-
-    private int deg;
-
-    public String getLon() {
-        return lon;
-    }
-
-    public void setLon(String lon) {
-        this.lon = lon;
-    }
-
-    public String getLat() {
-        return lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    private String lon;
-    private String lat;
 
     public double getWind() {
         return wind;
@@ -79,7 +101,7 @@ public class Weather {
     }
 
     public void setTimeZone(double timeZone) {
-        this.timeZone = timeZone/CONVERT_SECONDS_TO_HOURS;
+        this.timeZone = timeZone / CONVERT_SECONDS_TO_HOURS;
     }
 
     public double getTemperature() {
@@ -165,4 +187,5 @@ public class Weather {
     public void setWeatherDesc(String weatherDesc) {
         this.weatherDesc = weatherDesc;
     }
+
 }
