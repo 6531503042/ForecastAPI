@@ -32,16 +32,23 @@ public class WeatherController implements ErrorController {
     private List<String> days;
     private List<List<Forecast>> weatherData;
 
-    public String getErrorPath() {
-        return ERROR_PATH;
-    }
 
-    @RequestMapping(value = ERROR_PATH)
-    public String errorPage(Model model) {
-        CountryCodes codes = new CountryCodes();
-        model.addAttribute("codes", codes.getAllCountryCodes());
-        return "weather-view";
-    }
+//    @GetMapping("/resources/**")
+//    public String excludeStaticResources() {
+//        return "forward:/";
+//    }
+//
+//    // existing code
+
+//    @GetMapping("/**")
+//    public String errorHandle() {
+//        return "error404";
+//    }
+//
+//    @RequestMapping("/")
+//    public String ErrorHandle(){
+//        return "redirect:/homepage";
+//    }
 
     @RequestMapping("/")
     public String getWeatherView(Model model, CountryCodes codes) {

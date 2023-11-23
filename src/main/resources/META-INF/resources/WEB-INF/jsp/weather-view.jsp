@@ -33,6 +33,42 @@
 			padding: 0;
 		}
 
+		/* Add media queries for responsiveness */
+		@media only screen and (max-width: 480px) {
+			body {
+				/* Adjust styles for screens up to 480px width */
+			}
+		}
+
+		@media only screen and (min-width: 481px) and (max-width: 767px) {
+			/* Styles for screens between 481px and 767px width */
+		}
+
+		@media only screen and (min-width: 768px) and (max-width: 991px) {
+			/* Styles for screens between 768px and 991px width */
+		}
+
+		@media only screen and (min-width: 992px) and (max-width: 1199px) {
+			/* Styles for screens between 992px and 1199px width */
+		}
+
+		@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+			/* Styles for screens between 1200px and 1399px width */
+		}
+
+		@media only screen and (min-width: 1400px) and (max-width: 1799px) {
+			/* Styles for screens between 1400px and 1799px width */
+		}
+
+		@media only screen and (min-width: 1800px) {
+			/* Styles for screens larger than 1800px width */
+		}
+
+		@media only screen and (min-width: 2560px) {
+			/* Styles for 4K resolution screens */
+		}
+
+
 
 		.button-box {
 			display: flex;
@@ -335,10 +371,10 @@
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="#">Login</a>
+					<a class="nav-link" href="/login">Login</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="#">Sign Up</a>
+					<a class="nav-link" href="/register">Sign Up</a>
 				</li>
 			</ul>
 		</div>
@@ -372,7 +408,7 @@
 		Welcome to “SEEZ” Forecast Weather App!
 	</div>
 	<div class="middle-logo">
-		<img src="/img/img.png" width="140" alt="">
+		<img src="/img/img (1).png" width="140" alt="">
 	</div>
 	<div class="buttom-main">
 		<!-- Sign in to access more features. -->
