@@ -18,6 +18,8 @@ public interface WeatherService {
 
     public Airpollution jsonParseAirPollution(String city, String country) throws IOException, ParseException;
 
+    Airpollution jsonParseLatLonAirPollution(String city, String country) throws IOException, ParseException;
+
     public Map<String, List<Forecast>> getHourlyWeather(String city, String country) throws IOException;
 
     Weather getWeatherDataCity(String city, String country) throws IOException, ParseException;

@@ -54,10 +54,10 @@ public class WeatherServiceImpl implements WeatherService {
         return this.weather;
     }
 
+    @Override
     public Airpollution jsonParseLatLonAirPollution(String city, String country) throws IOException, ParseException {
         this.json = this.wDAO.getAirPollutionData(city, country);
         setAirPollutionParameters();
-
         return this.air;
     }
 
@@ -107,6 +107,7 @@ public class WeatherServiceImpl implements WeatherService {
             this.weather.setTimeZone(timeZone);
             this.weather.setWeather(weather);
             this.weather.setWeatherDesc(weatherDesc);
+            this.weather.setWeatherIcon(weatherIcon);
 
             // Create a Date object and set it in the Weather class
 
