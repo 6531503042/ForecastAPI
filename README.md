@@ -8,14 +8,14 @@ Forecasting weather is like tutoring a vast audience, often requiring repetitive
 
 ## Team Members
 
-| Student ID   | First Name | Last Name     | Github account           | 
-|--------------|------------|---------------|--------------------------|
-| 6531503005   | Kritsakorn | Sukkasem      | Kritsasoft               |
-| 6531503006   | Klavivach  | Prajong       | MABiuS1                  |
-| 6531503008   | Kongphop   | Saenphai      | kongphop1209             |
-| 6531503042   | Nimit      | Tanboontor    | 6531503042               |
-| 6531503117   | Phumiphat  | Wongsathit    | 2547phumiphat            |
-| 6531503120   | Ramet      | Naochomphoo   | 6531503120               |
+| Student ID   | First Name | Last Name     | Github account           | Role                     |
+|--------------|------------|---------------|--------------------------|--------------------------|
+| 6531503005   | Kritsakorn | Sukkasem      | Kritsasoft               | Document & UX/UI         |
+| 6531503006   | Klavivach  | Prajong       | MABiuS1                  | Backend (Authentication) |
+| 6531503008   | Kongphop   | Saenphai      | kongphop1209             | Document & UX/UI         |
+| 6531503042   | Nimit      | Tanboontor    | 6531503042               | Backend & Frontend       |
+| 6531503117   | Phumiphat  | Wongsathit    | 2547phumiphat            | Document & UX/UI         |
+| 6531503120   | Ramet      | Naochomphoo   | 6531503120               | Document & UX/UI         |
 
 
 ## Deployed on Google Cloud
@@ -48,22 +48,21 @@ To run the backend, follow these steps:
    
     ```JSP
     [weather-view page]
-    http://localhost:8080/
+    http://localhost:8100/
     ```
 
      ```JSP
     [forecast-view page]
-    http://localhost:8080/five_day/forecast?city={YOUR_CITY}&country={ISOCountryCODE}
+    http://localhost:8100/without_user/five_day/forecast?city={YOUR_CITY}&country={ISOCountryCODE}
     ```
 
      ```JSP
     [current-weather-view page]
-    http://localhost:8080/current/weather?city={YOUR_CITY}&country={ISOCountryCODE}
+    http://localhost:8100/without_user/current/weather?city={YOUR_CITY}&country={ISOCountryCODE}
     ```
 
     
 
    You can customize the Maven commands as needed, such as adding additional parameters for cleaning or validation.
-
 
 
