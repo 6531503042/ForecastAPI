@@ -132,7 +132,7 @@ The `connectAirPollutionAPI()` method connects to the air pollution API for curr
 | 6531503006   | Klavivach  | Prajong       | MABiuS1                  | Backend (Authentication) |
 | 6531503008   | Kongphop   | Saenphai      | kongphop1209             | Document & UX/UI         |
 | 6531503042   | Nimit      | Tanboontor    | 6531503042               | Backend & Frontend       |
-| 6531503117   | Phumiphat  | Wongsathit    | 2547phumiphat            | Document & UX/UI         |
+| 6531503117   | Phumiphat  | Wongsathit    | franz1us                 | Document & UX/UI         |
 | 6531503120   | Ramet      | Naochomphoo   | 6531503120               | Document & UX/UI         |
 
 
